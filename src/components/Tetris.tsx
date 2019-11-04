@@ -2,11 +2,12 @@ import React from 'react';
 import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
+import * as helpers from '../gameHelpers';
 
 const Tetris: React.FC = () => {
   return (
     <div>
-      <Stage />
+      <Stage stage={helpers.createStatge()} />
       <aside>
         <div>
           <Display text="Score" />
