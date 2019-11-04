@@ -1,5 +1,8 @@
 import React from 'react';
+import { StyledStartButton } from './styles/StyledStartButton';
 
-const StartButton: React.FC = () => <div>StartButton</div>;
+const StartButton: React.FC = () => (
+  <StyledStartButton>StartButton</StyledStartButton>
+);
 
 export default StartButton;

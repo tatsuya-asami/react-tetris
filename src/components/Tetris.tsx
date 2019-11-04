@@ -12,9 +12,9 @@ const Tetris: React.FC = () => {
         <Stage stage={helpers.createStatge()} />
         <aside>
           <div>
-            <Display text="Score" />
-            <Display text="Rows" />
-            <Display text="Level" />
+            <Display gameOver={true} text="Score" />
+            <Display gameOver={false} text="Rows" />
+            <Display gameOver={true} text="Level" />
             <StartButton />
           </div>
         </aside>

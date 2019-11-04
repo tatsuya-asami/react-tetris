@@ -7,7 +7,7 @@ interface ICell {
 }
 
 const Cell: React.FC<ICell> = ({ type }) => (
-  <StyledCell type={'L'} color={TETROMINOS['L'].color} />
+  <StyledCell type={type} color={TETROMINOS[type].color} />
 );
 
 export default Cell;
