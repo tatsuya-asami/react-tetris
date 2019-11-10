@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { ICell } from '../Cell';
 
-interface IStyledCell {
-  type: 0 | 'I' | 'J' | 'L' | 'O' | 'S' | 'T' | 'Z';
+interface IStyledCell extends ICell {
+  // type: 0 | 'I' | 'J' | 'L' | 'O' | 'S' | 'T' | 'Z';
   color?: string | undefined;
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { StyledCell } from './styles/StyledCell';
 import { TETROMINOS } from '../tetrominos';
 
-interface ICell {
+export interface ICell {
   type: 0 | 'I' | 'J' | 'L' | 'O' | 'S' | 'T' | 'Z';
 }
 
