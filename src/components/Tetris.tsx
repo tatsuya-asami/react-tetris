@@ -12,7 +12,7 @@ const Tetris: React.FC = () => {
   const [gameOver, setGameOver] = useState(false);
 
   const [player, updatePlayerPos, resetPlayer] = usePlayer();
-  const [stage, setStage] = useStage(player);
+  const [stage, setStage] = useStage(player, resetPlayer);
 
   console.log('re-render');
 
@@ -26,10 +26,20 @@ const Tetris: React.FC = () => {
     // reset everything
     setStage(createStage());
     resetPlayer();
+    setGameOver(false);
   };
 
   const drop = () => {
-    updatePlayerPos({ x: 0, y: 1, collided: false });
+    if (!checkCollision(player, stage, { x: 0, y: 1 })) {
+      updatePlayerPos({ x: 0, y: 1, collided: false });
+    } else {
+      if (player.pos.y < 1) {
+        console.log('GAME OVER!!');
+        setGameOver(true);
+        setDropTime(null);
+      }
+      updatePlayerPos({ x: 0, y: 0, collided: true });
+    }
   };
 
   const dropPlayer = () => {
@@ -37,7 +47,6 @@ const Tetris: React.FC = () => {
   };
 
   const move = (keyCode: number) => {
-    console.log(keyCode);
     if (!gameOver) {
       if (keyCode === 37) {
         movePlayer(-1);
@@ -65,9 +74,9 @@ const Tetris: React.FC = () => {
               <Display gameOver={false} text="Score" />
               <Display gameOver={false} text="Rows" />
               <Display gameOver={false} text="Level" />
-              <StartButton callback={startGame} />
             </div>
           )}
+          <StartButton callback={startGame} />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>
