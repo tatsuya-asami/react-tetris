@@ -6,9 +6,10 @@ import StartButton from './StartButton';
 import { StyledTetrisWrapper, StyledTetris } from './styles/StyledTetris';
 import { usePlayer } from '../hooks/usePlayer';
 import { useStage } from '../hooks/useStage';
+import { useInterval } from '../hooks/useInterval';
 
 const Tetris: React.FC = () => {
-  const [dropTime, setDropTime] = useState(null);
+  const [dropTime, setDropTime] = useState<any>(null);
   const [gameOver, setGameOver] = useState(false);
 
   const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
@@ -25,6 +26,7 @@ const Tetris: React.FC = () => {
   const startGame = () => {
     // reset everything
     setStage(createStage());
+    setDropTime(1000);
     resetPlayer();
     setGameOver(false);
   };
@@ -42,7 +44,18 @@ const Tetris: React.FC = () => {
     }
   };
 
+  const keyUp = (keyCode: number) => {
+    if (!gameOver) {
+      if (keyCode === 40) {
+        console.log('interval on');
+        setDropTime(1000);
+      }
+    }
+  };
+
   const dropPlayer = () => {
+    console.log('interval off');
+    setDropTime(null);
     drop();
   };
 
@@ -60,11 +73,16 @@ const Tetris: React.FC = () => {
     }
   };
 
+  useInterval(() => {
+    drop();
+  }, dropTime);
+
   return (
     <StyledTetrisWrapper
       role="button"
       tabIndex="0"
       onKeyDown={(e: React.KeyboardEvent<any>) => move(e.keyCode)}
+      onKeyUp={(e: React.KeyboardEvent<any>) => keyUp(e.keyCode)}
     >
       <StyledTetris>
         <Stage stage={stage} />
