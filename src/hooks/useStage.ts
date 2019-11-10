@@ -4,8 +4,22 @@ import { createStage } from '../gameHelpers';
 // todo any
 export const useStage = (player: any, resetPlayer?: any) => {
   const [stage, setStage] = useState<any>(createStage());
+  const [rowsCleared, setRowsCleared] = useState(0);
 
   useEffect(() => {
+    setRowsCleared(0);
+
+    const sweepRows = (newStage: any) =>
+      newStage.reduce((ack: any, row: any) => {
+        if (row.findIndex((cell: any) => cell[0] === 0) === -1) {
+          setRowsCleared((prev: number) => prev + 1);
+          ack.unshift(new Array(newStage[0].length).fill([0, 'clear']));
+          return ack;
+        }
+        ack.push(row);
+        return ack;
+      }, []);
+
     const updateStage = (prevStage: any[]) => {
       const newStage = prevStage.map(row =>
         row.map((cell: any[]) => (cell[1] === 'clear' ? [0, 'clear'] : cell))
@@ -22,13 +36,14 @@ export const useStage = (player: any, resetPlayer?: any) => {
       });
       if (player.collided) {
         resetPlayer();
+        return sweepRows(newStage);
       }
 
       return newStage;
     };
 
     setStage((prev: any[]) => updateStage(prev));
-  }, [player]);
+  }, [player, resetPlayer]);
 
-  return [stage, setStage];
+  return [stage, setStage, rowsCleared];
 };
