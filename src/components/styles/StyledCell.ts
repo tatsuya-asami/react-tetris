@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 interface IStyledCell {
-  type: string | number;
-  color: string;
+  type: 0 | 'I' | 'J' | 'L' | 'O' | 'S' | 'T' | 'Z';
+  color?: string | undefined;
 }
 
 export const StyledCell = styled.div<IStyledCell>`

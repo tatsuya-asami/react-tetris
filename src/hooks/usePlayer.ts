@@ -1,22 +1,28 @@
 import { useState, useCallback } from 'react';
-import { randomTetromino } from '../tetrominos';
+import { TETROMINOS, randomTetromino } from '../tetrominos';
 import { STAGE_WIDTH } from '../gameHelpers';
 
+interface IusePlayer {
+  pos: { x: number; y: number };
+  tetromino?: number[][];
+  collided?: boolean | undefined;
+}
+
 export const usePlayer = () => {
-  const [player, setPlayer] = useState({
+  const [player, setPlayer] = useState<any>({
     pos: { x: 0, y: 0 },
-    tetromino: randomTetromino().shape,
+    tetromino: TETROMINOS[0].shape,
     collided: false,
   });
 
   interface IupdatePlayerPos {
-    x: any;
-    y: any;
-    collided: any;
+    x: number;
+    y: number;
+    collided?: boolean;
   }
 
-  const updatePlayerPos = ({ x, y, collided }) => {
-    setPlayer(prev => ({
+  const updatePlayerPos = ({ x, y, collided }: IupdatePlayerPos): void => {
+    setPlayer((prev: any) => ({
       ...prev,
       pos: {
         x: prev.pos.x += x,

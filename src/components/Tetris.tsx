@@ -6,17 +6,18 @@ import StartButton from './StartButton';
 import { StyledTetrisWrapper, StyledTetris } from './styles/StyledTetris';
 import { usePlayer } from '../hooks/usePlayer';
 import { useStage } from '../hooks/useStage';
+import { HtmlAttributes } from 'csstype';
 
 const Tetris: React.FC = () => {
   const [dropTime, setDropTime] = useState(null);
   const [gameOver, setGameOver] = useState(false);
 
   const [player, updatePlayerPos, resetPlayer] = usePlayer();
-  const [stage, setStage] = useStage(player, null);
+  const [stage, setStage] = useStage(player);
 
   console.log('re-render');
 
-  const movePlayer = dir => {
+  const movePlayer = (dir: number) => {
     updatePlayerPos({ x: dir, y: 0 });
   };
 
@@ -34,7 +35,8 @@ const Tetris: React.FC = () => {
     drop();
   };
 
-  const move = ({ keyCode }) => {
+  const move = (keyCode: number) => {
+    console.log(keyCode);
     if (!gameOver) {
       if (keyCode === 37) {
         movePlayer(-1);
@@ -47,7 +49,11 @@ const Tetris: React.FC = () => {
   };
 
   return (
-    <StyledTetrisWrapper role="button" tabIndex="0" onKeyDown={e => move()}>
+    <StyledTetrisWrapper
+      role="button"
+      tabIndex="0"
+      onKeyDown={(e: React.KeyboardEvent<any>) => move(e.keyCode)}
+    >
       <StyledTetris>
         <Stage stage={stage} />
         <aside>
@@ -58,7 +64,7 @@ const Tetris: React.FC = () => {
               <Display gameOver={false} text="Score" />
               <Display gameOver={false} text="Rows" />
               <Display gameOver={false} text="Level" />
-              <StartButton onClick={startGame} />
+              <StartButton callback={startGame} />
             </div>
           )}
         </aside>
