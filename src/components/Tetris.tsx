@@ -31,17 +31,17 @@ const Tetris: React.FC = () => {
     setDropTime(1000);
     resetPlayer();
     setGameOver(false);
-    // setScore(0);
-    // setRows(0);
-    // setLevel(0);
+    setScore(0);
+    setRows(0);
+    setLevel(0);
   };
 
   const drop = () => {
     // increase level when player has cleared 10 rows
-    // if (rows > (level + 1) * 10) {
-    //   setLevel((prev: number) => prev + 1);
-    //   setDropTime(1000 / (level + 1) + 200);
-    // }
+    if (rows > (level + 1) * 10) {
+      setLevel((prev: number) => prev + 1);
+      setDropTime(1000 / (level + 1) + 200);
+    }
     if (!checkCollision(player, stage, { x: 0, y: 1 })) {
       updatePlayerPos({ x: 0, y: 1, collided: false });
     } else {
@@ -58,7 +58,7 @@ const Tetris: React.FC = () => {
     if (!gameOver) {
       if (keyCode === 40) {
         console.log('interval on');
-        // setDropTime(1000 / (level + 1) + 200);
+        setDropTime(1000 / (level + 1) + 200);
       }
     }
   };
