@@ -2,14 +2,14 @@ import React from 'react';
 import Cell from './Cell';
 import { StyledStage } from './styles/StyledStage';
 
-interface StageProps {
-  stage: any[];
+interface IStage {
+  stage: (number | string)[][];
 }
 
-const Stage: React.FC<StageProps> = ({ stage }) => (
+const Stage: React.FC<IStage> = ({ stage }) => (
   <StyledStage width={stage[0].length} height={stage.length}>
     {stage.map(row =>
-      row.map((cell: any, x: any) => <Cell key={x} type={cell[0]} />)
+      row.map((cell: any, x: number) => <Cell key={x} type={cell[0]} />)
     )}
   </StyledStage>
 );

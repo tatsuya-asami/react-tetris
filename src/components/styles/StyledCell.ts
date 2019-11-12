@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import { ICell } from '../Cell';
 
 interface IStyledCell extends ICell {
-  // type: 0 | 'I' | 'J' | 'L' | 'O' | 'S' | 'T' | 'Z';
-  color?: string | undefined;
+  color: string;
 }
 
 export const StyledCell = styled.div<IStyledCell>`

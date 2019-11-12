@@ -5,13 +5,8 @@ interface IuseInterval {
   delay: any;
 }
 
-export function useInterval(callback: () => void, delay: any) {
-  // console.log(callback);
-  // console.log(delay);
+export function useInterval(callback: () => void, delay: number) {
   const savedCallback = useRef<any>(null);
-  // Remember the latest callback.
-  // console.log(savedCallback);
-
   useEffect(() => {
     savedCallback.current = callback;
   }, [callback]);

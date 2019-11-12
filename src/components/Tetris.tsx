@@ -64,7 +64,7 @@ const Tetris: React.FC = () => {
   };
 
   const dropPlayer = () => {
-    console.log('interval off');
+    // console.log('interval off');
     setDropTime(null);
     drop();
   };
@@ -90,7 +90,6 @@ const Tetris: React.FC = () => {
   return (
     <StyledTetrisWrapper
       role="button"
-      tabIndex="0"
       onKeyDown={(e: React.KeyboardEvent<any>) => move(e.keyCode)}
       onKeyUp={(e: React.KeyboardEvent<any>) => keyUp(e.keyCode)}
     >

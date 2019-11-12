@@ -1,17 +1,11 @@
 import styled from 'styled-components';
 import bgImage from '../../img/bg.png';
 
-interface IStyledTetrisWrapper {
-  role: any;
-  tabIndex: any;
-  onKeyDown: any;
-}
-
-export const StyledTetrisWrapper = styled.div<IStyledTetrisWrapper>`
+export const StyledTetrisWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   background: url(${bgImage}) #000;
-  bacground-size: cover;
+  background-size: cover;
   overflow: hidden;
 `;
 

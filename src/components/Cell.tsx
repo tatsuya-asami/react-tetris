@@ -7,7 +7,7 @@ export interface ICell {
 }
 
 const Cell: React.FC<ICell> = ({ type }) => {
-  console.log('rerender');
+  // console.log('rerender');
   return <StyledCell type={type} color={TETROMINOS[type].color} />;
 };
 // avoid rendering too many times

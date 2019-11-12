@@ -31,7 +31,7 @@ export const TETROMINOS = {
 };
 
 interface IrandomTetromino {
-  shape: any[];
+  shape: (string | number)[][];
   color: string;
 }
 
@@ -39,6 +39,5 @@ export const randomTetromino = (): IrandomTetromino => {
   const tetrominos: string = 'IJLOSTZ';
   const randTetromino: string =
     tetrominos[Math.floor(Math.random() * tetrominos.length)];
-  // console.log(randTetromino);
   return TETROMINOS[randTetromino as 'I' | 'J' | 'L' | 'O' | 'S' | 'T' | 'Z'];
 };

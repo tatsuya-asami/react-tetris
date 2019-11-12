@@ -4,8 +4,8 @@ import { STAGE_WIDTH, checkCollision } from '../gameHelpers';
 
 interface IusePlayer {
   pos: { x: number; y: number };
-  tetromino?: number[][];
-  collided?: boolean | undefined;
+  tetromino: number[][];
+  collided: boolean | undefined;
 }
 
 export const usePlayer = () => {
@@ -18,11 +18,11 @@ export const usePlayer = () => {
   interface IupdatePlayerPos {
     x: number;
     y: number;
-    collided?: boolean;
+    collided: boolean;
   }
 
   const updatePlayerPos = ({ x, y, collided }: IupdatePlayerPos): void => {
-    setPlayer((prev: any) => ({
+    setPlayer((prev: IusePlayer) => ({
       ...prev,
       pos: {
         x: prev.pos.x += x,
@@ -32,19 +32,19 @@ export const usePlayer = () => {
     }));
   };
 
-  const rotate = (matrix: any, dir: any) => {
+  const rotate = (matrix: (number | string)[][], dir: number) => {
     // make the rows to become columns(response)
-    const rotatedTetro = matrix.map((_: any, index: number) =>
-      matrix.map((col: []) => col[index])
+    const rotatedTetro = matrix.map((_: (number | string)[], index: number) =>
+      matrix.map((col: (number | string)[]) => col[index])
     );
     // reverse each row to get a rotated matrix
     if (dir > 0) {
-      return rotatedTetro.map((row: []) => row.reverse());
+      return rotatedTetro.map((row: (number | string)[]) => row.reverse());
     }
     return rotatedTetro.reverse();
   };
 
-  const playerRotate = (stage: any, dir: any) => {
+  const playerRotate = (stage: (number | string)[][], dir: number) => {
     const clonedPlayer = JSON.parse(JSON.stringify(player));
     clonedPlayer.tetromino = rotate(clonedPlayer.tetromino, dir);
 

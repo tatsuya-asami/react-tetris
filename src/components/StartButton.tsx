@@ -2,7 +2,7 @@ import React from 'react';
 import { StyledStartButton } from './styles/StyledStartButton';
 
 interface IStartButton {
-  callback: any;
+  callback: () => void;
 }
 
 const StartButton: React.FC<IStartButton> = ({ callback }) => (
