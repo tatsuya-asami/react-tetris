@@ -46,7 +46,7 @@ const Tetris: React.FC = () => {
       updatePlayerPos({ x: 0, y: 1, collided: false });
     } else {
       if (player.pos.y < 1) {
-        console.log('GAME OVER!!');
+        // console.log('GAME OVER!!');
         setGameOver(true);
         setDropTime(null);
       }
@@ -57,7 +57,7 @@ const Tetris: React.FC = () => {
   const keyUp = (keyCode: number) => {
     if (!gameOver) {
       if (keyCode === 40) {
-        console.log('interval on');
+        // console.log('interval on');
         setDropTime(1000 / (level + 1) + 200);
       }
     }

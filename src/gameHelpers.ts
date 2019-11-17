@@ -17,7 +17,6 @@ export const checkCollision = (
   stage: (string | number)[][] | any[][][number],
   { x: moveX, y: moveY }: { x: number; y: number }
 ) => {
-  console.log(stage);
   for (let y = 0; y < player.tetromino.length; y += 1) {
     for (let x = 0; x < player.tetromino[y].length; x += 1) {
       // 1. check that we're on an actual tetromino cell
