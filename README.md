@@ -1,3 +1,12 @@
+# Operation
+```
+This game use only arrow keys.
+↑: rotate
+←: move left
+→: move right
+↓: soft drop
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
