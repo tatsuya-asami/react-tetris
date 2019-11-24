@@ -7,6 +7,7 @@ interface IStyledStage {
 
 export const StyledStage = styled.div<IStyledStage>`
   display: grid;
+  position: relative;
   grid-template-rows: repeat(
     ${props => props.height},
     calc(25vw / ${props => props.width})

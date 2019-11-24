@@ -6,14 +6,15 @@ import { GameOverModal } from './styles/StyledGameOverModal';
 
 interface IStage {
   gameOver: boolean;
+  score: number;
   stage: (number | string)[][];
 }
 
-const Stage: React.FC<IStage> = ({ gameOver, stage }) => (
+const Stage: React.FC<IStage> = ({ gameOver, score, stage }) => (
   <StyledStage width={stage[0].length} height={stage.length}>
     {gameOver ? (
       <GameOverModal>
-        <GameOver></GameOver>
+        <GameOver score={score}></GameOver>
       </GameOverModal>
     ) : (
       stage.map(row =>

@@ -94,17 +94,17 @@ const Tetris: React.FC = () => {
       onKeyUp={(e: React.KeyboardEvent<any>) => keyUp(e.keyCode)}
     >
       <StyledTetris>
-        <Stage stage={stage} gameOver={gameOver} />
+        <Stage stage={stage} score={score} gameOver={gameOver} />
         <aside>
-          {/* {gameOver ? (
+          {gameOver ? (
             <Display gameOver={gameOver} text="Game Over"></Display>
-          ) : ( */}
-          <div>
-            <Display gameOver={false} text={`Score: ${score}`} />
-            <Display gameOver={false} text={`Rows: ${rows}`} />
-            <Display gameOver={false} text={`Level: ${level}`} />
-          </div>
-          {/* )} */}
+          ) : (
+            <div>
+              <Display gameOver={false} text={`Score: ${score}`} />
+              <Display gameOver={false} text={`Rows: ${rows}`} />
+              <Display gameOver={false} text={`Level: ${level}`} />
+            </div>
+          )}
           <StartButton callback={startGame} />
         </aside>
       </StyledTetris>

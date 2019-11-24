@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface IStyledDisplay {
-  gameOver: boolean;
+  gameOver?: boolean;
 }
 
 export const StyledDisplay = styled.div<IStyledDisplay>`
